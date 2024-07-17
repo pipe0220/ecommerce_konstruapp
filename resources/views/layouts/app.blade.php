@@ -11,6 +11,8 @@
         <link rel="preconnect" href="https://fonts.bunny.net">
         <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
 
+        @stack('css')
+
         <!--Fonts awesome-->
         <script src="https://kit.fontawesome.com/ada9478f0f.js" crossorigin="anonymous"></script>
 
@@ -23,7 +25,7 @@
     <body class="font-sans antialiased">
         <x-banner />
 
-        <div class="min-h-screen bg-gray-100 dark:bg-gray-900">
+        <div class="min-h-screen bg-gray-100 dark:bg-gray-100">
             {{--@livewire('navigation-menu')--}}
             @livewire('navigation')
 
@@ -31,10 +33,17 @@
             <main>
                 {{ $slot }}
             </main>
+
+            <div  class="mt-16">
+                @include('layouts.partials.app.footer')
+            </div>
         </div>
 
         @stack('modals')
 
         @livewireScripts
+
+        @stack('js')
+
     </body>
 </html>
