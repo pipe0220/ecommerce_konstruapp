@@ -9,17 +9,17 @@
                     <i class="fas fa-bars text-white"></i>
                 </button>
 
-                <h1 class="text-white">
-                    <a href="/" class="inline-flex flex-col items-end">
-                        <span class="text-xl md:text-3xl leading-4 md:leading-6 font-semibold ">
+                <h1 class="text-white flex items-center">
+                    <img src="{{ asset('img/logo app.png') }}" alt="KonstruApp Logo" class="w-10 h-10 mr-2">
+                    <a href="/" class="inline-flex flex-col items-start">
+                        <span class="text-xl md:text-3xl leading-4 md:leading-6 font-semibold">
                             KonstruApp
                         </span>
                         <span class="text-xs">
-                            Tienda oneline
+                            Tienda online
                         </span>
                     </a>
                 </h1>
-
                 <div class="flex-1 hidden md:block ">
                     <x-input oninput="search(this.value)" class="w-full" placeholder="Buscar por producto, tienda o marca"/>
                 </div>
@@ -84,9 +84,15 @@
 
                     </x-dropdown>
 
-                    <button class="text-xl md:text-3xl">
-                        <i class="fas fa-shopping-cart text-white"></i>
-                    </button>
+                    <a href="{{route('cart.index')}}" class="relative">
+                        <i class="fas fa-shopping-cart text-white text-xl md:text-3xl"></i>
+
+                        <span
+                            id="cart-count"
+                            class="absolute -top-2 -end-4 inline-flex items-center justify-center w-6 h-6 bg-red-600 rounded-full text-xs font-bold text-white ">
+                            {{Cart::instance('shopping')->count()}}
+                        </span>
+                    </a>
                 </div>
             </div>
 
@@ -105,7 +111,7 @@
                 <div class="bg-gray-800 px-4 py-3 text-white font-semibold">
                     <div class="flex justify-between items-center">
                         <span class="text-lg">
-                            Hola
+                            Categorias
                         </span>
 
                         <button x-on:click="open = false">
@@ -181,6 +187,11 @@
     @push('js')
 
         <script>
+
+            Livewire.on('cartUpdated', (count) =>{
+                document.getElementById('cart-count').innerText = count;
+            })
+
             function search(value){
                 Livewire.dispatch('search', {
                     search: value

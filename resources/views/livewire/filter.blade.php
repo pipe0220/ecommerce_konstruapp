@@ -95,7 +95,7 @@
                                 COP $ / {{$product->price}}
                             </p>
 
-                            <a href="" class="btn btn-blue block w-full text-center">
+                            <a href="{{route('products.show', $product)}}" class="btn btn-blue block w-full text-center">
                                 Ver más
                             </a>
                         </div>

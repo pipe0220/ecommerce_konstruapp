@@ -11,7 +11,7 @@
             <!-- Slides -->
             @foreach ($covers as $cover)
                 <div class="swiper-slide">
-                    <img src="{{$cover->image}}" class="w-full aspect-[3/1] object-cover object-center">
+                    <img src="{{$cover->image}}" class="w-full aspect-[4/1] object-cover object-center">
                 </div>
             @endforeach
         </div>
@@ -46,7 +46,7 @@
                             COP $ / {{$product->price}}
                         </p>
 
-                        <a href="" class="btn btn-blue block w-full text-center">
+                        <a href="{{route('products.show', $product)}}" class="btn btn-blue block w-full text-center">
                             Ver más
                         </a>
                     </div>
